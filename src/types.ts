@@ -15,6 +15,7 @@ export interface CandidateInfo {
   party: string;
   slogan: string;
   cnpj: string;
+  email?: string;
   biography: string;
   pillars: string[];
 }

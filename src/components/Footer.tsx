@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CANDIDATE } from '../data/candidateData';
 import { PsolLogo } from './PsolSunIcon';
-import { ArrowUp, MapPin } from 'lucide-react';
+import { ArrowUp, Mail, Copy, Check } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCopyEmail = () => {
+    if (CANDIDATE.email) {
+      navigator.clipboard.writeText(CANDIDATE.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    }
   };
 
   return (
@@ -28,7 +38,7 @@ export const Footer: React.FC = () => {
             <PsolLogo className="h-6" lightText />
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-1 bg-blue-800 hover:bg-blue-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-colors border border-blue-600"
+              className="inline-flex items-center gap-1 bg-blue-800 hover:bg-blue-700 active:bg-blue-900 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-colors border border-blue-600 touch-manipulation cursor-pointer min-h-[38px]"
             >
               <span>Topo</span>
               <ArrowUp className="w-3 h-3" />
@@ -37,15 +47,42 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Legal Transparency Section */}
+      {/* Legal & Contact Transparency Section */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-4">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left border-b border-slate-800 pb-4">
+        
+        {/* Contact & CNPJ Box */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-center md:text-left">
           <div>
-            <div className="text-slate-200 font-bold">Angelo Costa • Deputado Federal</div>
+            <div className="text-slate-200 font-bold text-sm">Angelo Costa • Deputado Federal</div>
             <div className="text-[11px] text-slate-400">Partido Socialismo e Liberdade (PSOL 50) • Minas Gerais</div>
           </div>
-          <div className="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 font-mono text-yellow-400 text-[11px]">
-            CNPJ: {CANDIDATE.cnpj}
+
+          {/* Email and CNPJ */}
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2.5">
+            {CANDIDATE.email && (
+              <div className="flex items-center gap-1 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+                <a 
+                  href={`mailto:${CANDIDATE.email}`}
+                  className="inline-flex items-center gap-1.5 text-yellow-400 hover:text-yellow-300 font-semibold text-xs transition-colors"
+                  title="Enviar mensagem para o e-mail de contato"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>{CANDIDATE.email}</span>
+                </a>
+                <button
+                  onClick={handleCopyEmail}
+                  className="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors ml-1"
+                  title="Copiar e-mail"
+                  aria-label="Copiar e-mail de contato"
+                >
+                  {copiedEmail ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                </button>
+              </div>
+            )}
+
+            <div className="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700 font-mono text-slate-300 text-[11px]">
+              CNPJ: <strong className="text-yellow-400">{CANDIDATE.cnpj}</strong>
+            </div>
           </div>
         </div>
 

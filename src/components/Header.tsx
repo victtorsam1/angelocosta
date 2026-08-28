@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PsolLogo } from './PsolSunIcon';
 import { CANDIDATE } from '../data/candidateData';
-import { CheckCircle2, Share2, Vote, MapPin } from 'lucide-react';
+import { CheckCircle2, Share2, Vote, MapPin, Mail } from 'lucide-react';
 
 interface HeaderProps {
   onOpenUrna: () => void;
@@ -37,6 +37,17 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           <div className="flex items-center gap-3 text-[10px] sm:text-[11px] text-slate-400">
+            {CANDIDATE.email && (
+              <a 
+                href={`mailto:${CANDIDATE.email}`}
+                className="hidden sm:inline-flex items-center gap-1 text-slate-300 hover:text-yellow-300 transition-colors"
+                title="E-mail de Contato Oficial"
+              >
+                <Mail className="w-3 h-3 text-yellow-400" />
+                <span>{CANDIDATE.email}</span>
+              </a>
+            )}
+            <span className="hidden sm:inline text-slate-600">•</span>
             <span className="font-mono">CNPJ: {CANDIDATE.cnpj}</span>
           </div>
         </div>

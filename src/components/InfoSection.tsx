@@ -11,7 +11,8 @@ import {
   MapPin, 
   CheckCircle2, 
   Copy, 
-  Check 
+  Check,
+  Mail
 } from 'lucide-react';
 
 interface InfoSectionProps {
@@ -63,7 +64,18 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ candidatePhoto }) => {
                 <h3 className="font-black text-slate-900 text-base sm:text-lg">{CANDIDATE.name}</h3>
                 <PsolLogo variant="icon" className="h-4" />
               </div>
-              <p className="text-xs font-bold text-blue-700 uppercase">Deputado Federal • 5078</p>
+              <p className="text-xs font-bold text-blue-700 uppercase mb-2">Deputado Federal • 5078</p>
+
+              {CANDIDATE.email && (
+                <a
+                  href={`mailto:${CANDIDATE.email}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-blue-800 text-[11px] font-semibold rounded-lg border border-slate-200 transition-colors"
+                  title="Enviar e-mail para Angelo Costa"
+                >
+                  <Mail className="w-3.5 h-3.5 text-blue-600" />
+                  <span>{CANDIDATE.email}</span>
+                </a>
+              )}
             </div>
 
             {/* Texto Biográfico */}

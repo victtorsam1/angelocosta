@@ -8,6 +8,7 @@ export const CANDIDATE: CandidateInfo = {
   party: "PSOL",
   slogan: "PELO DESENVOLVIMENTO!",
   cnpj: "68.437.330/0001-82",
+  email: "contato@angelocostaz.com",
   biography: "Angelo Costa é baiano de nascimento, mas fez de Minas Gerais o seu lar e a sua causa há mais de 15 anos. Com uma trajetória enraizada no estado, construiu sua família, sua atuação comunitária e sua luta ao lado do povo trabalhador mineiro. Concorrendo a Deputado Federal pelo PSOL com o número 5078, Angelo leva a Brasília a defesa incansável da saúde pública (SUS), das universidades e institutos federais, da recuperação das nossas rodovias e da geração de emprego e renda para quem mais precisa.",
   pillars: [
     "Mais de 15 anos de dedicação e vida em Minas Gerais",
