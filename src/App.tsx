@@ -1,28 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { UrnaSimulator } from './components/UrnaSimulator';
 import { InfoSection } from './components/InfoSection';
 import { Footer } from './components/Footer';
 import { CANDIDATE } from './data/candidateData';
-import { Vote, MessageCircle, Share2 } from 'lucide-react';
+import { Vote, MessageCircle } from 'lucide-react';
 import defaultPhoto from './assets/images/angelo_costa_official_1787908673958.jpg';
 
 export default function App() {
-  // Load saved custom photo from localStorage if the user uploaded their exact image, otherwise use default
-  const [candidatePhoto, setCandidatePhoto] = useState<string>(() => {
+  const [candidatePhoto] = useState<string>(() => {
     const saved = localStorage.getItem('angelo_costa_user_custom_photo');
     return saved || defaultPhoto;
   });
-
-  const handlePhotoChange = (newPhotoUrl: string) => {
-    setCandidatePhoto(newPhotoUrl);
-    try {
-      localStorage.setItem('angelo_costa_user_custom_photo', newPhotoUrl);
-    } catch {
-      // localStorage quota safety
-    }
-  };
 
   const scrollToUrna = () => {
     const el = document.getElementById('urna-virtual');
@@ -38,7 +28,7 @@ Acesse e simule seu voto na urna eletrônica: ${window.location.href}`;
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col selection:bg-yellow-400 selection:text-slate-950 font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col selection:bg-yellow-400 selection:text-slate-950 font-sans pb-16 md:pb-0">
       
       {/* 1. Clean Top Header */}
       <Header 
@@ -73,7 +63,7 @@ Acesse e simule seu voto na urna eletrônica: ${window.location.href}`;
       <Footer />
 
       {/* Floating Bottom Sticky Bar for Mobile Quick Action */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-2.5 px-4 shadow-2xl flex items-center justify-between gap-3">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 py-2 px-3 sm:px-4 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-2xl flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <div className="bg-emerald-600 text-white font-mono font-black text-sm px-2.5 py-1 rounded-md">
             5078
@@ -84,18 +74,18 @@ Acesse e simule seu voto na urna eletrônica: ${window.location.href}`;
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={scrollToUrna}
-            className="bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold px-3 py-2 rounded-lg shadow-xs flex items-center gap-1"
+            className="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 text-white text-xs font-black px-3 py-2 rounded-lg shadow-xs flex items-center gap-1 touch-manipulation cursor-pointer min-h-[38px]"
           >
-            <Vote className="w-3.5 h-3.5" />
+            <Vote className="w-3.5 h-3.5 text-yellow-300" />
             <span>Urna</span>
           </button>
 
           <button
             onClick={handleShareWhatsApp}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg shadow-xs flex items-center gap-1"
+            className="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs font-black px-3 py-2 rounded-lg shadow-xs flex items-center gap-1 touch-manipulation cursor-pointer min-h-[38px]"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             <span>Zap</span>
