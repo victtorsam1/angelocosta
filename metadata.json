@@ -1,0 +1,6 @@
+{
+  "name": "Angelo Costa - Deputado Federal 5078",
+  "description": "Site institucional oficial de Angelo Costa, Deputado Federal por Minas Gerais. VOTE 5078 - Pelo Desenvolvimento!",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
