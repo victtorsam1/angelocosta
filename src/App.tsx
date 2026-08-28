@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { UrnaSimulator } from './components/UrnaSimulator';
@@ -6,13 +6,8 @@ import { InfoSection } from './components/InfoSection';
 import { Footer } from './components/Footer';
 import { CANDIDATE } from './data/candidateData';
 import { Vote, MessageCircle } from 'lucide-react';
-import defaultPhoto from './assets/images/angelo_costa_official_1787908673958.jpg';
-
 export default function App() {
-  const [candidatePhoto] = useState<string>(() => {
-    const saved = localStorage.getItem('angelo_costa_user_custom_photo');
-    return saved || defaultPhoto;
-  });
+  const candidatePhoto = '/foto-angelo-costa.jpg';
 
   const scrollToUrna = () => {
     const el = document.getElementById('urna-virtual');
